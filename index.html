@@ -49,10 +49,21 @@
                         <button @click="abrirDetalhes(p.id)">
                             Detalhes
                         </button>
-                        
                     </article>
+                    <p v-else class="empty">
+                        Nenhum pokémon encontrado nesta página
+                    </p>
                 </div>
             </template>
+            <div class="toolbar">
+                <button @click="mudarPagina(-1)" :disabled="carregando" || pagina ==1>
+                    Anterior
+                </button>
+                <span>
+                    Página {{ pagina }} de {{ totalPaginas }}
+                </span>
+                <button @click="mudarPagina(1)" :disabled="carregando" || pagina>=totalPaginas</button>></button>
+            </div>
         </div>
     </main>
 </body>

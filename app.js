@@ -18,7 +18,7 @@ createApp({
 
         const limite = 20;
         const totalPaginas = computed(() => Math.ceil(total.value / limite));
-        const filtrados = computed(() => p => p.name.includes(busca.value.trim().toLoweCase()));
+        const filtrados = computed(() => pokemons.value.filter(()=> p.name.includes(busca.value.trim().toLoweCase())));
 
         function idDaURL(url) {
             const partes = url.split('/').filter(Boolean);
