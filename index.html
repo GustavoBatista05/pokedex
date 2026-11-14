@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
+    <script scr="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main>
+        <div id="app">
+            <h1>
+                Pokédex
+            </h1>
+            <p class="muted">
+                Pokédex feita em Vue3 com busca local em página
+            </p>
+            <div class="toolbar">
+                <label for="busca">
+                    Filtrar na página:
+                </label>
+                <input id="busca" v-model="busca" placeholder="Ex.: pikachu">
+                <button @click="carregar" :disabled="carregando">
+                    Atualizar
+                </button>
+            </div>
+
+            <p v-if="carregando" role="status">
+                Carregando...
+            </p>
+            <p v-else-if="erro" role="alert" class="erro">
+                {{ erro }}
+            </p>
+            <template v-else>
+                <p>
+                    Exibindo {{ filtrados.lenght }} de {{ pokemons.lenght }} Pokémons nesta página
+                </p>
+                <div v-if="filtrados.lenght" class="cards">
+                    <article v-for="p in filtrados" :key="p.id" class="card">
+                        <img src="imagem(p.id)" alt="'Imagem de ' + p.name" loading="lazy">
+                        <h2>
+                            {{ p.name }}
+                        </h2>
+                        <p class="muted">
+                            #{{ p.id }}
+                        </p>
+                        <button @click="abrirDetalhes(p.id)">
+                            Detalhes
+                        </button>
+                        
+                    </article>
+                </div>
+            </template>
+        </div>
+    </main>
+</body>
+</html>
